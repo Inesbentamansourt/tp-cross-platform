@@ -1,0 +1,62 @@
+{
+  "civilites": [
+    "Mr",
+    "Mme"
+  ],
+  "specialites": [
+    "informatique",
+    "mecanique",
+    "electrique"
+  ],
+  "matieres": [
+    {
+      "nom": "POO",
+      "checked": false
+    },
+    {
+      "nom": "Java",
+      "checked": false
+    },
+    {
+      "nom": "ionic",
+      "checked": false
+    }
+  ],
+  "todos": [
+    {
+      "civilite": "Mme",
+      "nom": "bt",
+      "prenom": "ines",
+      "matieres": [
+        "java",
+        "Poo"
+      ],
+      "specialite": "informatique",
+      "id": 1
+    },
+    {
+      "civilite": "Mme",
+      "nom": "bt",
+      "prenom": "amina",
+      "matieres": [
+        "POO",
+        "Java",
+        "ionic"
+      ],
+      "specialite": "informatique",
+      "id": 3
+    },
+    {
+      "civilite": "Mr",
+      "nom": "bt",
+      "prenom": "mabrouk",
+      "matieres": [
+        "POO",
+        "Java",
+        "ionic"
+      ],
+      "specialite": "electrique",
+      "id": 4
+    }
+  ]
+}

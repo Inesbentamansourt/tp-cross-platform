@@ -2,7 +2,7 @@
   <ion-page>
     <ion-header translucent>
       <ion-toolbar>
-        <ion-title class="ion-text-center"> Ajouter un étudiant</ion-title>
+        <ion-title class="ion-text-center"> modifier un étudiant</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -24,8 +24,8 @@
         <ion-input v-model="nom"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Prenom</ion-label>
-        <ion-input v-model="prenom"></ion-input>
+        <ion-label position="floating">Prenom </ion-label>
+        <ion-input v-model="prenom" placeholder=""></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Matieres :</ion-label>
@@ -46,10 +46,11 @@
             <div>
               <ion-button
                 router-link="/home"
-                @click="addTodo"
+                @click="doneTodo(id)"
                 style="margin: 20px"
-                >update</ion-button
-              >
+                >update
+              </ion-button>
+
               <ion-button router-link="/home" style="margin: 20px"
                 >cancel
               </ion-button>
@@ -63,6 +64,7 @@
 
 <script>
 import axios from 'axios';
+import { useRoute } from 'vue-router';
 
 const baseURL = 'http://localhost:3000/todos';
 import {
@@ -83,7 +85,7 @@ import {
   IonText,
   IonButton,
 } from '@ionic/vue';
-import { defineComponent, ref } from 'vue';
+import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'TodoList',
@@ -104,6 +106,13 @@ export default defineComponent({
     IonInput,
     IonSelectOption,
     IonSelect,
+  },
+  setup() {
+    const route = useRoute();
+    const id = route.params.id;
+    return {
+      id,
+    };
   },
   data() {
     return {
@@ -133,26 +142,17 @@ export default defineComponent({
       ma: '',
     };
   },
-  async created() {
-    try {
-      const res = await axios.get(baseURL);
+  // async created() {
+  //   try {
+  //     const res = await axios.get(baseURL);
 
-      this.todos = res.data;
-    } catch (e) {
-      console.error(e);
-    }
-  },
+  //     this.todos = res.data;
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // },
 
   methods: {
-    async deleteUser(id) {
-      let x = window.confirm('You want to delete the person?');
-      if (x) {
-        const user = await axios.delete(`${baseURL}/${id}`);
-        console.log(user);
-        alert('person deleted!');
-      }
-    },
-
     async doneTodo(id) {
       try {
         await axios.patch(`${baseURL}/${id}`, {
@@ -178,36 +178,6 @@ export default defineComponent({
 
           return todo;
         });
-      } catch (e) {
-        console.error(e);
-      }
-    },
-    async addTodo() {
-      try {
-        console.log("civilite='" + this.civilite + "'");
-        console.log("nom='" + this.nom + "'");
-        console.log("prenom='" + this.prenom + "'");
-
-        const mat = this.matieres
-          .filter((obj) => obj.checked)
-          .map((obj) => obj.nom);
-
-        console.log("specialite='" + this.specialite + "'");
-        const res = await axios.post(baseURL, {
-          civilite: this.civilite,
-          nom: this.nom,
-          prenom: this.prenom,
-          matieres: mat,
-          specialite: this.specialite,
-        });
-
-        this.todos = [...this.todos, res.data];
-
-        this.civilite = '';
-        this.nom = '';
-        this.prenom = '';
-        this.matiere = [];
-        this.specialite = '';
       } catch (e) {
         console.error(e);
       }

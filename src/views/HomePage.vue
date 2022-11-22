@@ -7,20 +7,13 @@
     </ion-header>
 
     <ion-content :fullscreen="true">
-      <div
-        v-for="todo of todos"
-        :key="todo.id"
-        style="margin: 20px"
-        @keyup.enter="deletee(id)"
-      >
+      <div v-for="todo of todos" :key="todo.id" style="margin: 20px">
         <div>civilite :{{ todo.civilite }}</div>
         <div>nom : {{ todo.nom }}</div>
         <div>
           <span>prenom: {{ todo.prenom }}</span
           ><span
-            ><ion-button style="float: right" router-link="/UpdatePage"
-              >modifier</ion-button
-            >
+            ><a style="float: right" :href="/UpdatePage/ + todo.id">modifier</a>
             <ion-button style="float: right" @click="deleteUser(todo.id)">
               Delete
             </ion-button></span
@@ -101,12 +94,45 @@ export default defineComponent({
   },
 
   methods: {
+    async doneTodo(id) {
+      try {
+        await axios.patch(`${baseURL}/${id}`, {
+          civilite: this.civilite,
+          nom: this.nom,
+          prenom: this.prenom,
+          matieres: this.matieres
+            .filter((obj) => obj.checked)
+            .map((obj) => obj.nom),
+          specialite: this.specialite,
+        });
+
+        this.todos = this.todos.map((todo) => {
+          if (todo.id === id) {
+            todo.civilite = this.civilite;
+            todo.nom = this.nom;
+            todo.prenom = this.prenom;
+            todo.matieres = this.matieres
+              .filter((obj) => obj.checked)
+              .map((obj) => obj.nom);
+            todo.specialite = this.specialite;
+          }
+
+          return todo;
+        });
+      } catch (e) {
+        console.error(e);
+      }
+    },
     async deleteUser(id) {
       let x = window.confirm('You want to delete the person?');
       if (x) {
         const user = await axios.delete(`${baseURL}/${id}`);
         alert('person deleted!');
       }
+    },
+    Modifier(id, tache) {
+      this.nom = tache.nom;
+      this.id = id;
     },
     async addTodo() {
       try {

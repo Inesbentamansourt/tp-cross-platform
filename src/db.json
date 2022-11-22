@@ -25,19 +25,8 @@
   "todos": [
     {
       "civilite": "Mme",
-      "nom": "bt",
-      "prenom": "ines",
-      "matieres": [
-        "java",
-        "Poo"
-      ],
-      "specialite": "informatique",
-      "id": 1
-    },
-    {
-      "civilite": "Mme",
-      "nom": "bt",
-      "prenom": "amina",
+      "nom": "het",
+      "prenom": "ism",
       "matieres": [
         "POO",
         "Java",

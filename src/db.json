@@ -1,0 +1,46 @@
+{
+  "eleves": [
+    {
+      "id": "1",
+      "nom": "بن علي",
+      "prenom": "علي",
+      "classe": "  السنة الخامسة",
+      "image": "ines.jpg",
+      "emploi": "ines.jpg",
+      "note": "ines.jpg"
+    },
+    {
+      "id": "2",
+      "nom": "  بن تمنصورت",
+      "prenom": "   ايناس",
+      "classe": "     السنة السادسة",
+      "image": "iness.jpg",
+      "emploi": "ines.jpg",
+      "note": "ines.jpg"
+    }
+  ],
+  "annonces": [
+    {
+      "id": "1",
+      "titre": " غياب معلمة",
+      "detail": "غياب المعلمة سعاد يومي الثلاثاء و الاربعاء"
+    },
+    {
+      "id": "2",
+      "titre": " رحلة",
+      "detail": "     وجود رحلة الى تونس العاصمة في عطلة الشتاء فعلى الراغبين تسجيل اسمائهم"
+    }
+  ],
+  "commentaire": [
+    {
+      "id": "1",
+      "commentaire1": "  حسنا",
+      "commentaire2": "جيد"
+    },
+    {
+      "id": "2",
+      "commentaire1": " رائع",
+      "commentaire2": "ممتاز"
+    }
+  ]
+}
